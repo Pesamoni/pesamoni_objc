@@ -111,16 +111,6 @@ NSInteger kPSMDefaultApiMissingParamErrorCode = 234513;
         return nil;
     }
 
-    // verify the required parameter 'amount' is set
-    if (amount == nil) {
-        NSParameterAssert(amount);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"amount"] };
-            NSError* error = [NSError errorWithDomain:kPSMDefaultApiErrorDomain code:kPSMDefaultApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
 
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/transactions"];
 
@@ -130,48 +120,7 @@ NSInteger kPSMDefaultApiMissingParamErrorCode = 234513;
     if (method != nil) {
         queryParams[@"method"] = method;
     }
-    if (amount != nil) {
-        queryParams[@"amount"] = amount;
-    }
-    if (mobile != nil) {
-        queryParams[@"mobile"] = mobile;
-    }
-    if (holdername != nil) {
-        queryParams[@"holdername"] = holdername;
-    }
-    if (cardnumber != nil) {
-        queryParams[@"cardnumber"] = cardnumber;
-    }
-    if (cvv != nil) {
-        queryParams[@"cvv"] = cvv;
-    }
-    if (exp != nil) {
-        queryParams[@"exp"] = exp;
-    }
-    if (currency != nil) {
-        queryParams[@"currency"] = currency;
-    }
-    if (account != nil) {
-        queryParams[@"account"] = account;
-    }
-    if (reference != nil) {
-        queryParams[@"reference"] = reference;
-    }
-    if (genericmsg != nil) {
-        queryParams[@"genericmsg"] = genericmsg;
-    }
-    if (token != nil) {
-        queryParams[@"token"] = token;
-    }
-    if (bouquet != nil) {
-        queryParams[@"bouquet"] = bouquet;
-    }
-    if (payoption != nil) {
-        queryParams[@"payoption"] = payoption;
-    }
-    if (meternumber != nil) {
-        queryParams[@"meternumber"] = meternumber;
-    }
+
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
     // HTTP header `Accept`
